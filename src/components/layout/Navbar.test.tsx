@@ -2,6 +2,10 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Navbar } from './Navbar'
 
+vi.mock('../../hooks/useAuth', () => ({
+  useAuth: () => ({ user: null, token: null, isLoading: false, error: null, login: vi.fn(), register: vi.fn(), logout: vi.fn() }),
+}))
+
 beforeEach(() => {
   localStorage.clear()
   document.documentElement.classList.remove('dark')
